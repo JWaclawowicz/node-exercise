@@ -1,4 +1,4 @@
-import { MatchData } from '../interfaces/matches-data.interface';
+import { MatchData } from '../interfaces/match-data.interface';
 
 export const MATCHES: MatchData[] = [
   {
