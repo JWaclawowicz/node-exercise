@@ -43,6 +43,7 @@ describe('score utils', (): void => {
   describe('extractScoreListFromString', (): void => {
     it('should return score array when score is a string', (): void => {
       const scores = extractScoreListFromString('2:1,7:6,6:3,6:7');
+      expect(scores?.length).toBe(5);
       expect(scores?.[0]).toBe('2:1,7:6,6:3,6:7');
       expect(scores?.[1]).toBe('2:1');
       expect(scores?.[2]).toBe('7:6');
@@ -58,6 +59,17 @@ describe('score utils', (): void => {
     it('should return null when score string has less than 4 scores', (): void => {
       const scores = extractScoreListFromString('2:1,7:6,7:6');
       expect(scores).toBeNull();
+    });
+
+    it('should return score array of 5 elements when score string has more than 4 scores', (): void => {
+      const scores = extractScoreListFromString('2:1,7:6,6:3,6:7,5:5,1:1');
+      expect(scores?.length).toBe(5);
+      expect(scores?.[0]).toBe('2:1,7:6,6:3,6:7');
+      expect(scores?.[1]).toBe('2:1');
+      expect(scores?.[2]).toBe('7:6');
+      expect(scores?.[3]).toBe('6:3');
+      expect(scores?.[4]).toBe('6:7');
+      expect(scores?.[5]).toBeUndefined();
     });
   });
 });
