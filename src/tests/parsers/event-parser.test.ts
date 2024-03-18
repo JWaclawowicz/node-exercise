@@ -117,6 +117,13 @@ describe('EventParser', (): void => {
         };
         expect(parser.formatScore(match)).toBe('2:1');
       });
+
+      it('should return an empty string when score is not available', (): void => {
+        const match: MatchData = {
+          sport: 'soccer',
+        };
+        expect(parser.formatScore(match)).toBe('');
+      });
     });
 
     describe('when sport is volleyball', (): void => {
@@ -128,6 +135,13 @@ describe('EventParser', (): void => {
           score: '3:0,25:23,25:19,25:21',
         };
         expect(parser.formatScore(match)).toBe('Main score: 3:0 (set1 25:23, set2 25:19, set3 25:21)');
+      });
+
+      it('should return an empty string when score is not available', (): void => {
+        const match: MatchData = {
+          sport: 'volleyball',
+        };
+        expect(parser.formatScore(match)).toBe('');
       });
     });
 
@@ -155,6 +169,13 @@ describe('EventParser', (): void => {
           ],
         };
         expect(parser.formatScore(match)).toBe('9:7,2:1,5:3,9:9');
+      });
+
+      it('should return an empty string when score is not available', (): void => {
+        const match: MatchData = {
+          sport: 'basketball',
+        };
+        expect(parser.formatScore(match)).toBe('');
       });
     });
 
