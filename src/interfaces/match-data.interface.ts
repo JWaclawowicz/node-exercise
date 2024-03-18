@@ -5,6 +5,6 @@ export interface MatchData {
   score?: Score;
 }
 
-type Score = string | ScoreList;
+export type Score = string | ScoreList;
 
-type ScoreList = string[][];
+export type ScoreList = string[][];
