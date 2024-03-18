@@ -177,6 +177,16 @@ describe('EventParser', (): void => {
         };
         expect(parser.formatScore(match)).toBe('');
       });
+
+      it('should return scores correctly when some scores are missing', (): void => {
+        const match: MatchData = {
+          sport: 'basketball',
+          participant1: 'GKS Tychy',
+          participant2: 'GKS Katowice',
+          score: [['9:7'], ['', '9:9']],
+        };
+        expect(parser.formatScore(match)).toBe('9:7,,,9:9');
+      });
     });
 
     describe('when sport is tennis', (): void => {

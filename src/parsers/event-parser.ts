@@ -32,17 +32,36 @@ export class EventParser {
         if (!isScoreString(match.score)) return '';
 
         const scores = extractScoreListFromString(match.score);
+
         if (!scores) return '';
 
-        const set1 = scores[2];
-        const set2 = scores[3];
-        const set3 = scores[4];
-
-        return 'Main score: ' + scores[1] + ' (' + 'set1 ' + set1 + ', ' + 'set2 ' + set2 + ', ' + 'set3 ' + set3 + ')';
+        return (
+          'Main score: ' +
+          scores[1] +
+          ' (' +
+          'set1 ' +
+          scores[2] +
+          ', ' +
+          'set2 ' +
+          scores[3] +
+          ', ' +
+          'set3 ' +
+          scores[4] +
+          ')'
+        );
       }
       case 'basketball': {
         if (!isScoreList(match.score)) return '';
-        return match.score[0][0] + ',' + match.score[0][1] + ',' + match.score[1][0] + ',' + match.score[1][1];
+
+        return (
+          (match.score[0][0] ?? '') +
+          ',' +
+          (match.score[0][1] ?? '') +
+          ',' +
+          (match.score[1][0] ?? '') +
+          ',' +
+          (match.score[1][1] ?? '')
+        );
       }
       default:
         return Exception.INVALID_SPORT;
