@@ -1,3 +1,4 @@
+import { Exception } from '../../enums/exception.enum';
 import { MatchData } from '../../interfaces/match-data.interface';
 import { EventParser } from '../../parsers/event-parser';
 
@@ -91,7 +92,7 @@ describe('EventParser', (): void => {
         const match: MatchData = {
           sport: 'ski jumping',
         };
-        expect(parser.makeEventName(match)).toBe('Exception: invalid sport');
+        expect(parser.makeEventName(match)).toBe(Exception.INVALID_SPORT);
       });
     });
 
@@ -100,7 +101,7 @@ describe('EventParser', (): void => {
         const match: MatchData = {
           sport: '',
         };
-        expect(parser.makeEventName(match)).toBe('Exception: invalid sport');
+        expect(parser.makeEventName(match)).toBe(Exception.INVALID_SPORT);
       });
     });
   });
@@ -174,7 +175,7 @@ describe('EventParser', (): void => {
         const match: MatchData = {
           sport: 'ski jumping',
         };
-        expect(parser.formatScore(match)).toBe('Exception: invalid sport');
+        expect(parser.formatScore(match)).toBe(Exception.INVALID_SPORT);
       });
     });
 
@@ -183,7 +184,7 @@ describe('EventParser', (): void => {
         const match: MatchData = {
           sport: '',
         };
-        expect(parser.formatScore(match)).toBe('Exception: invalid sport');
+        expect(parser.formatScore(match)).toBe(Exception.INVALID_SPORT);
       });
     });
   });

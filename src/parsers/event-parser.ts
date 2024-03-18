@@ -1,3 +1,4 @@
+import { Exception } from '../enums/exception.enum';
 import { MatchData } from '../interfaces/match-data.interface';
 import { isScoreString, extractScoreListFromString, isScoreList } from '../utils/score.utils';
 
@@ -15,7 +16,7 @@ export class EventParser {
       case 'handball':
         return participant1 + ' vs ' + participant2;
       default:
-        return 'Exception: invalid sport';
+        return Exception.INVALID_SPORT;
     }
   }
 
@@ -52,7 +53,7 @@ export class EventParser {
       if (!isScoreString(match.score)) return '';
       return match.score;
     } else {
-      return 'Exception: invalid sport';
+      return Exception.INVALID_SPORT;
     }
   }
 }
