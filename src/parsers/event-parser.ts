@@ -2,23 +2,21 @@ import { MatchData } from '../interfaces/match-data.interface';
 import { isScoreString, extractScoreListFromString, isScoreList } from '../utils/score.utils';
 
 export class EventParser {
-  makeEventName(match: MatchData): string {
-    if (match.sport === 'soccer') {
-      return match.participant1 + ' - ' + match.participant2;
-    } else if (match.sport === 'tennis') {
-      return match.participant1 + ' vs ' + match.participant2;
-    } else if (match.sport === 'volleyball') {
-      return match.participant1 + ' - ' + match.participant2;
-    } else if (match.sport === 'handball') {
-      return match.participant1 + ' vs ' + match.participant2;
-    } else if (match.sport === 'basketball') {
-      return match.participant1 + ' - ' + match.participant2;
-    } else {
-      return 'Exception: invalid sport';
+  public makeEventName(match: MatchData): string {
+    switch (match.sport) {
+      case 'soccer':
+      case 'volleyball':
+      case 'basketball':
+        return match.participant1 + ' - ' + match.participant2;
+      case 'tennis':
+      case 'handball':
+        return match.participant1 + ' vs ' + match.participant2;
+      default:
+        return 'Exception: invalid sport';
     }
   }
 
-  formatScore(match: MatchData): string {
+  public formatScore(match: MatchData): string {
     if (match.sport === 'soccer') {
       if (!isScoreString(match.score)) return '';
       return match.score;
