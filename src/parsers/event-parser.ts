@@ -3,14 +3,17 @@ import { isScoreString, extractScoreListFromString, isScoreList } from '../utils
 
 export class EventParser {
   public makeEventName(match: MatchData): string {
+    const participant1 = match.participant1 ?? '';
+    const participant2 = match.participant2 ?? '';
+
     switch (match.sport) {
       case 'soccer':
       case 'volleyball':
       case 'basketball':
-        return match.participant1 + ' - ' + match.participant2;
+        return participant1 + ' - ' + participant2;
       case 'tennis':
       case 'handball':
-        return match.participant1 + ' vs ' + match.participant2;
+        return participant1 + ' vs ' + participant2;
       default:
         return 'Exception: invalid sport';
     }

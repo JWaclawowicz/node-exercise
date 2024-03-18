@@ -19,6 +19,13 @@ describe('EventParser', (): void => {
         };
         expect(parser.makeEventName(match)).toBe('Chelsea - Arsenal');
       });
+
+      it('should return a dash when participants are not available', (): void => {
+        const match: MatchData = {
+          sport: 'soccer',
+        };
+        expect(parser.makeEventName(match)).toBe(' - ');
+      });
     });
 
     describe('when sport is volleyball', (): void => {
@@ -42,6 +49,13 @@ describe('EventParser', (): void => {
           score: '34:26',
         };
         expect(parser.makeEventName(match)).toBe('Pogoń Szczeciń vs Azoty Puławy');
+      });
+
+      it('should return the string vs when participants are not available', (): void => {
+        const match: MatchData = {
+          sport: 'handball',
+        };
+        expect(parser.makeEventName(match)).toBe(' vs ');
       });
     });
 
